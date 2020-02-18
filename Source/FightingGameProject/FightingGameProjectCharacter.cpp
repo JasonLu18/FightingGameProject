@@ -41,6 +41,9 @@ AFightingGameProjectCharacter::AFightingGameProjectCharacter()
 	GetCharacterMovement()->MaxWalkSpeed = 600.f;
 	GetCharacterMovement()->MaxFlySpeed = 600.f;
 
+	PlayerHealth = 1.00f;
+	PlayerSuper = 1.00f; 
+
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
 }
@@ -55,8 +58,71 @@ void AFightingGameProjectCharacter::SetupPlayerInputComponent(class UInputCompon
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AFightingGameProjectCharacter::MoveRight);
 
+
+	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack1);
+	// PlayerInputComponent->BindAction("Attack1", IE_Released, this, &AFightingGameProjectCharacter::StopAttack1);
+
+	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack2);
+	// PlayerInputComponent->BindAction("Attack2", IE_Released, this, &AFightingGameProjectCharacter::StopAttack2);
+
+	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack3);
+	// PlayerInputComponent->BindAction("Attack3", IE_Released, this, &AFightingGameProjectCharacter::StopAttack3);
+
+	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack4);
+	// PlayerInputComponent->BindAction("Attack4", IE_Released, this, &AFightingGameProjectCharacter::StopAttack4);
+
+	PlayerInputComponent->BindAction("Attack5", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack5);
+	// PlayerInputComponent->BindAction("Attack5", IE_Released, this, &AFightingGameProjectCharacter::StopAttack5);
+
+	PlayerInputComponent->BindAction("Attack6", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack6);
+	// PlayerInputComponent->BindAction("Attack6", IE_Released, this, &AFightingGameProjectCharacter::StopAttack6);
+
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &AFightingGameProjectCharacter::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &AFightingGameProjectCharacter::TouchStopped);
+}
+
+void AFightingGameProjectCharacter::TakeDamage(float damageAmount)
+{
+	PlayerHealth -= damageAmount;
+	if (PlayerHealth < 0.00f) {
+		PlayerHealth = 0.00f;
+	}
+}
+
+void AFightingGameProjectCharacter::StartAttack1()
+{
+	TakeDamage(0.05);
+	UE_LOG(LogTemp, Warning, TEXT("Using 1st attack"));
+}
+
+void AFightingGameProjectCharacter::StartAttack2()
+{
+	TakeDamage(0.15);
+	UE_LOG(LogTemp, Warning, TEXT("Using 2nd attack"));
+}
+
+void AFightingGameProjectCharacter::StartAttack3()
+{
+	TakeDamage(0.20);
+	UE_LOG(LogTemp, Warning, TEXT("Using 3rd attack"));
+}
+
+void AFightingGameProjectCharacter::StartAttack4()
+{
+	TakeDamage(0.10);
+	UE_LOG(LogTemp, Warning, TEXT("Using 4th attack"));
+}
+
+void AFightingGameProjectCharacter::StartAttack5()
+{
+	TakeDamage(0.20);
+	UE_LOG(LogTemp, Warning, TEXT("Using 5th attack"));
+}
+
+void AFightingGameProjectCharacter::StartAttack6()
+{
+	TakeDamage(0.30);
+	UE_LOG(LogTemp, Warning, TEXT("Using 6th attack"));
 }
 
 void AFightingGameProjectCharacter::MoveRight(float Value)
