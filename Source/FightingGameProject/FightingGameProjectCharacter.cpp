@@ -43,6 +43,7 @@ AFightingGameProjectCharacter::AFightingGameProjectCharacter()
 
 	PlayerHealth = 1.00f;
 	PlayerSuper = 1.00f; 
+	WasCrouchHPused = false;
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named MyCharacter (to avoid direct content references in C++)
@@ -121,6 +122,7 @@ void AFightingGameProjectCharacter::StartAttack5()
 
 void AFightingGameProjectCharacter::StartAttack6()
 {
+	WasCrouchHPused = true;
 	TakeDamage(0.30);
 	UE_LOG(LogTemp, Warning, TEXT("Using 6th attack"));
 }
