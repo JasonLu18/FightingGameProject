@@ -48,8 +48,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Super")
 	float PlayerSuper;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attack")
-	bool WasCrouchHPused;
 
 public:
 	AFightingGameProjectCharacter();

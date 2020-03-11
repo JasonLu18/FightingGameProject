@@ -52,6 +52,7 @@ AFemaleNinja::AFemaleNinja() {
 void AFemaleNinja::MoveRight(float Val)
 {
 	// add movement in that direction
+	WalkingForward = true;
 	AddMovementInput(FVector(0.f, -1.f, 0.f), Val);
 }
 
@@ -127,4 +128,5 @@ void AFemaleNinja::StartAttack5()
 
 void AFemaleNinja::StartAttack6()
 {
+	WasCrouchHPused = true;
 }

@@ -54,6 +54,12 @@ protected:
 	// End of APawn interface
 
 	virtual void TakeDamage(float damageAmount);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attacks")
+	bool WasCrouchHPused = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	bool WalkingForward = false;
 };
 
 
