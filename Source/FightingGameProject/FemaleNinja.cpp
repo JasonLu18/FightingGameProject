@@ -4,9 +4,12 @@
 #include "FemaleNinja.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include <string>
 #include "Components/InputComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+
+using namespace std;
 
 AFemaleNinja::AFemaleNinja() {
 
@@ -128,5 +131,6 @@ void AFemaleNinja::StartAttack5()
 
 void AFemaleNinja::StartAttack6()
 {
+	CurrentAttack = "CrHP";
 	WasCrouchHPused = true;
 }

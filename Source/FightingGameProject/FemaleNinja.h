@@ -3,12 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include <string>
 #include "FightingGameProjectCharacter.h"
 #include "FemaleNinja.generated.h"
 
-/**
- * 
- */
+using namespace std;
+
 UCLASS()
 class FIGHTINGGAMEPROJECT_API AFemaleNinja : public AFightingGameProjectCharacter
 {
@@ -58,8 +58,17 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attacks")
 	bool WasCrouchHPused = false;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ForwardMovement")
 	bool WalkingForward = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BackwardMovement")
+		bool WalkingBackward = false;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Animation")
+	FString CurrentAttack = "null";
+	
+	
+	
 };
 
 
