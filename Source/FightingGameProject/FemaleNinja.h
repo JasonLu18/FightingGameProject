@@ -22,12 +22,12 @@ class FIGHTINGGAMEPROJECT_API AFemaleNinja : public AFightingGameProjectCharacte
 	// UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	// class USpringArmComponent* CameraBoom;
 
-	void StartAttack1();
-	void StartAttack2();
-	void StartAttack3();
-	void StartAttack4();
-	void StartAttack5();
-	void StartAttack6();
+	void StandingLP();
+	void StandingMP();
+	void StandingHP();
+	void StandingLK();
+	void StandingMK();
+	void StandingHK();
 
 public:
 
@@ -55,14 +55,12 @@ protected:
 
 	virtual void TakeDamage(float damageAmount);
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Attacks")
-	bool WasCrouchHPused = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ForwardMovement")
 	bool WalkingForward = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "BackwardMovement")
-		bool WalkingBackward = false;
+	bool WalkingBackward = false;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Animation")
 	FString CurrentAttack = "null";

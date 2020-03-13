@@ -79,22 +79,22 @@ void AFemaleNinja::SetupPlayerInputComponent(UInputComponent * PlayerInputCompon
 	PlayerInputComponent->BindAxis("MoveRight", this, &AFemaleNinja::MoveRight);
 
 
-	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &AFemaleNinja::StartAttack1);
+	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &AFemaleNinja::StandingLP);
 	// PlayerInputComponent->BindAction("Attack1", IE_Released, this, &AFemaleNinja::StopAttack1);
 
-	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &AFemaleNinja::StartAttack2);
+	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &AFemaleNinja::StandingMP);
 	// PlayerInputComponent->BindAction("Attack2", IE_Released, this, &AFemaleNinja::StopAttack2);
 
-	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &AFemaleNinja::StartAttack3);
+	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &AFemaleNinja::StandingHP);
 	// PlayerInputComponent->BindAction("Attack3", IE_Released, this, &AFemaleNinja::StopAttack3);
 
-	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &AFemaleNinja::StartAttack4);
+	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &AFemaleNinja::StandingLK);
 	// PlayerInputComponent->BindAction("Attack4", IE_Released, this, &AFemaleNinja::StopAttack4);
 
-	PlayerInputComponent->BindAction("Attack5", IE_Pressed, this, &AFemaleNinja::StartAttack5);
+	PlayerInputComponent->BindAction("Attack5", IE_Pressed, this, &AFemaleNinja::StandingMK);
 	// PlayerInputComponent->BindAction("Attack5", IE_Released, this, &AFemaleNinja::StopAttack5);
 
-	PlayerInputComponent->BindAction("Attack6", IE_Pressed, this, &AFemaleNinja::StartAttack6);
+	PlayerInputComponent->BindAction("Attack6", IE_Pressed, this, &AFemaleNinja::StandingHK);
 	// PlayerInputComponent->BindAction("Attack6", IE_Released, this, &AFemaleNinja::StopAttack6);
 
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &AFemaleNinja::TouchStarted);
@@ -109,28 +109,38 @@ void AFemaleNinja::TakeDamage(float damageAmount)
 	}
 }
 
-void AFemaleNinja::StartAttack1() {
+void AFemaleNinja::StandingLP()
+{
+	CurrentAttack = "StLP";
 
 }
 
-void AFemaleNinja::StartAttack2()
+void AFemaleNinja::StandingMP()
 {
+	CurrentAttack = "StMP";
+
 }
 
-void AFemaleNinja::StartAttack3()
+void AFemaleNinja::StandingHP()
 {
+	CurrentAttack = "StHP";
+
 }
 
-void AFemaleNinja::StartAttack4()
+void AFemaleNinja::StandingLK()
 {
+	CurrentAttack = "StLK";
+
 }
 
-void AFemaleNinja::StartAttack5()
+void AFemaleNinja::StandingMK()
 {
+	CurrentAttack = "StMK";
+
 }
 
-void AFemaleNinja::StartAttack6()
+void AFemaleNinja::StandingHK()
 {
-	CurrentAttack = "CrHP";
-	WasCrouchHPused = true;
+	CurrentAttack = "StHK";
+	
 }
