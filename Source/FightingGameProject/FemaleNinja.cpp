@@ -52,12 +52,6 @@ AFemaleNinja::AFemaleNinja() {
 
 
 
-void AFemaleNinja::MoveRight(float Val)
-{
-	// add movement in that direction
-	WalkingForward = true;
-	AddMovementInput(FVector(0.f, -1.f, 0.f), Val);
-}
 
 void AFemaleNinja::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
@@ -76,8 +70,8 @@ void AFemaleNinja::SetupPlayerInputComponent(UInputComponent * PlayerInputCompon
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
-	PlayerInputComponent->BindAxis("MoveRight", this, &AFemaleNinja::MoveRight);
-
+	PlayerInputComponent->BindAction("WalkRight", IE_Pressed, this, &AFemaleNinja::WalkRight);
+	PlayerInputComponent->BindAction("WalkLeft", IE_Pressed, this, &AFemaleNinja::WalkLeft);
 
 	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &AFemaleNinja::StandingLP);
 	// PlayerInputComponent->BindAction("Attack1", IE_Released, this, &AFemaleNinja::StopAttack1);
@@ -97,6 +91,10 @@ void AFemaleNinja::SetupPlayerInputComponent(UInputComponent * PlayerInputCompon
 	PlayerInputComponent->BindAction("Attack6", IE_Pressed, this, &AFemaleNinja::StandingHK);
 	// PlayerInputComponent->BindAction("Attack6", IE_Released, this, &AFemaleNinja::StopAttack6);
 
+	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &AFemaleNinja::Crouch);
+	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &AFemaleNinja::StopCrouch);
+
+
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &AFemaleNinja::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &AFemaleNinja::TouchStopped);
 }
@@ -112,35 +110,75 @@ void AFemaleNinja::TakeDamage(float damageAmount)
 void AFemaleNinja::StandingLP()
 {
 	CurrentAttack = "StLP";
-
+	UE_LOG(LogTemp, Warning, TEXT("St. LP"));
 }
 
 void AFemaleNinja::StandingMP()
 {
 	CurrentAttack = "StMP";
-
+	UE_LOG(LogTemp, Warning, TEXT("St. MP"));
 }
 
 void AFemaleNinja::StandingHP()
 {
 	CurrentAttack = "StHP";
-
+	UE_LOG(LogTemp, Warning, TEXT("St. HP"));
 }
 
 void AFemaleNinja::StandingLK()
 {
 	CurrentAttack = "StLK";
-
+	UE_LOG(LogTemp, Warning, TEXT("St. LK"));
 }
 
 void AFemaleNinja::StandingMK()
 {
 	CurrentAttack = "StMK";
-
+	UE_LOG(LogTemp, Warning, TEXT("St. MK"));
 }
 
 void AFemaleNinja::StandingHK()
 {
 	CurrentAttack = "StHK";
-	
+	UE_LOG(LogTemp, Warning, TEXT("St. HK"));
+}
+
+void AFemaleNinja::Crouch()
+{
+	IsCrouching = true;
+	UE_LOG(LogTemp, Warning, TEXT("Crouch"));
+}
+
+void AFemaleNinja::StopCrouch()
+{
+	IsCrouching = false;
+	UE_LOG(LogTemp, Warning, TEXT("Stop Crouch"));
+}
+
+/*
+void AFemaleNinja::MoveLeft()
+{
+	// add movement in that direction
+	WalkingBackward = true;
+	AddMovementInput(FVector(0.f, 1.f, 0.f));
+	 UE_LOG(LogTemp, Warning, TEXT("Walking Left"));
+}
+*/
+
+
+
+void AFemaleNinja::WalkRight()
+{
+	// add movement in that direction
+	WalkingForward = true;
+	AddMovementInput(FVector(0.f, -1.f, 0.f), 1.0);
+	 UE_LOG(LogTemp, Warning, TEXT("Walking Right"));
+}
+
+void AFemaleNinja::WalkLeft()
+{
+	// add movement in that direction
+	WalkingBackward = true;
+	AddMovementInput(FVector(0.f, 1.f, 0.f), 1.0);
+	UE_LOG(LogTemp, Warning, TEXT("Walking Left"));
 }

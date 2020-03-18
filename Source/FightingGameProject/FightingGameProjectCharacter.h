@@ -29,7 +29,12 @@ class AFightingGameProjectCharacter : public ACharacter
 protected:
 
 	/** Called for side to side input */
-	void MoveRight(float Val);
+	// void MoveRight(float Value);
+
+	void MoveLeft(float Value);
+
+	void WalkLeft();
+	void WalkRight();
 
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
