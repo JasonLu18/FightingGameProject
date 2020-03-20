@@ -25,16 +25,17 @@ class AFightingGameProjectCharacter : public ACharacter
 	virtual void StartAttack4();
 	virtual void StartAttack5();
 	virtual void StartAttack6();
-
-protected:
-
+	virtual void Crouch();
 	/** Called for side to side input */
-	// void MoveRight(float Value);
+	void MoveRight(float Value);
 
 	void MoveLeft(float Value);
 
-	void WalkLeft();
-	void WalkRight();
+protected:
+
+	
+
+	
 
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
@@ -52,7 +53,8 @@ protected:
 	float PlayerHealth;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Super")
 	float PlayerSuper;
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "State")
+	bool IsCrouching = false;
 
 public:
 	AFightingGameProjectCharacter();

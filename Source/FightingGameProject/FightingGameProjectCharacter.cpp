@@ -56,8 +56,8 @@ void AFightingGameProjectCharacter::SetupPlayerInputComponent(class UInputCompon
 	// set up gameplay key bindings
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
-	// PlayerInputComponent->BindAxis("MoveRight", this, &AFightingGameProjectCharacter::MoveRight);
-
+	PlayerInputComponent->BindAxis("MoveRight", this, &AFightingGameProjectCharacter::MoveRight);
+	PlayerInputComponent->BindAxis("MoveLeft", this, &AFightingGameProjectCharacter::MoveLeft);
 
 	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack1);
 	// PlayerInputComponent->BindAction("Attack1", IE_Released, this, &AFightingGameProjectCharacter::StopAttack1);
@@ -77,8 +77,6 @@ void AFightingGameProjectCharacter::SetupPlayerInputComponent(class UInputCompon
 	PlayerInputComponent->BindAction("Attack6", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack6);
 	// PlayerInputComponent->BindAction("Attack6", IE_Released, this, &AFightingGameProjectCharacter::StopAttack6);
 
-	PlayerInputComponent->BindAction("WalkLeft", IE_Pressed, this, &AFightingGameProjectCharacter::WalkLeft);
-	PlayerInputComponent->BindAction("WalkRight", IE_Pressed, this, &AFightingGameProjectCharacter::WalkRight);
 
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &AFightingGameProjectCharacter::TouchStarted);
 	PlayerInputComponent->BindTouch(IE_Released, this, &AFightingGameProjectCharacter::TouchStopped);
@@ -121,26 +119,25 @@ void AFightingGameProjectCharacter::StartAttack6()
 {
 	
 }
-/*
+
+void AFightingGameProjectCharacter::Crouch()
+{
+	
+}
+
 void AFightingGameProjectCharacter::MoveRight(float Value)
 {
 	// add movement in that direction
 	AddMovementInput(FVector(0.f,-1.f,0.f), Value);
-} */
+} 
 
 void AFightingGameProjectCharacter::MoveLeft(float Value)
 {
+	// add movement in that direction
+	AddMovementInput(FVector(0.f, 1.f, 0.f), Value);
 }
 
-void AFightingGameProjectCharacter::WalkLeft()
-{
-	AddMovementInput(FVector(0.f, 1.f, 0.f));
-}
 
-void AFightingGameProjectCharacter::WalkRight()
-{
-	AddMovementInput(FVector(0.f, -1.f, 0.f));
-}
 
 void AFightingGameProjectCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {

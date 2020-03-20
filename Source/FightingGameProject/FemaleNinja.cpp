@@ -70,8 +70,8 @@ void AFemaleNinja::SetupPlayerInputComponent(UInputComponent * PlayerInputCompon
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
-	PlayerInputComponent->BindAction("WalkRight", IE_Pressed, this, &AFemaleNinja::WalkRight);
-	PlayerInputComponent->BindAction("WalkLeft", IE_Pressed, this, &AFemaleNinja::WalkLeft);
+	PlayerInputComponent->BindAxis("MoveRight", this, &AFemaleNinja::MoveRight);
+	PlayerInputComponent->BindAxis("MoveLeft", this, &AFemaleNinja::MoveLeft);
 
 	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &AFemaleNinja::StandingLP);
 	// PlayerInputComponent->BindAction("Attack1", IE_Released, this, &AFemaleNinja::StopAttack1);
@@ -155,30 +155,19 @@ void AFemaleNinja::StopCrouch()
 	UE_LOG(LogTemp, Warning, TEXT("Stop Crouch"));
 }
 
-/*
-void AFemaleNinja::MoveLeft()
+
+void AFemaleNinja::MoveRight(float Value)
 {
 	// add movement in that direction
-	WalkingBackward = true;
-	AddMovementInput(FVector(0.f, 1.f, 0.f));
-	 UE_LOG(LogTemp, Warning, TEXT("Walking Left"));
+	AddMovementInput(FVector(0.f, -1.f, 0.f), Value);
 }
-*/
 
-
-
-void AFemaleNinja::WalkRight()
+void AFemaleNinja::MoveLeft(float Value)
 {
 	// add movement in that direction
-	WalkingForward = true;
-	AddMovementInput(FVector(0.f, -1.f, 0.f), 1.0);
-	 UE_LOG(LogTemp, Warning, TEXT("Walking Right"));
+	AddMovementInput(FVector(0.f, 1.f, 0.f), Value);
 }
 
-void AFemaleNinja::WalkLeft()
-{
-	// add movement in that direction
-	WalkingBackward = true;
-	AddMovementInput(FVector(0.f, 1.f, 0.f), 1.0);
-	UE_LOG(LogTemp, Warning, TEXT("Walking Left"));
-}
+
+
+

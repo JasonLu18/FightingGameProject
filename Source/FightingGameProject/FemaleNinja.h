@@ -22,14 +22,6 @@ class FIGHTINGGAMEPROJECT_API AFemaleNinja : public AFightingGameProjectCharacte
 	// UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	// class USpringArmComponent* CameraBoom;
 
-	void StandingLP();
-	void StandingMP();
-	void StandingHP();
-	void StandingLK();
-	void StandingMK();
-	void StandingHK();
-	void Crouch();
-	void StopCrouch();
 public:
 
 	// Returns SideViewCameraComponent subobject 
@@ -41,11 +33,16 @@ public:
 
 
 protected: 
-	/** Called for side to side input */
-	void WalkRight();
-
-	/** Called for side to side input */
-	void WalkLeft();
+	void StandingLP();
+	void StandingMP();
+	void StandingHP();
+	void StandingLK();
+	void StandingMK();
+	void StandingHK();
+	void Crouch();
+	void StopCrouch();
+	void MoveRight(float Value);
+	void MoveLeft(float Value);
 
 	/** Handle touch inputs. */
 	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
@@ -69,8 +66,6 @@ protected:
 	UPROPERTY(BlueprintReadWrite, Category = "Animation")
 	FString CurrentAttack = "null";
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "State")
-	bool IsCrouching = false;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "State")
 	bool IsStanding = true;
