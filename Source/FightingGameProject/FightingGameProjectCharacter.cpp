@@ -58,6 +58,7 @@ void AFightingGameProjectCharacter::SetupPlayerInputComponent(class UInputCompon
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AFightingGameProjectCharacter::MoveRight);
 	PlayerInputComponent->BindAxis("MoveLeft", this, &AFightingGameProjectCharacter::MoveLeft);
+	PlayerInputComponent->BindAxis("Crouch", this, &AFightingGameProjectCharacter::Crouch);
 
 	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack1);
 	// PlayerInputComponent->BindAction("Attack1", IE_Released, this, &AFightingGameProjectCharacter::StopAttack1);
@@ -120,7 +121,7 @@ void AFightingGameProjectCharacter::StartAttack6()
 	
 }
 
-void AFightingGameProjectCharacter::Crouch()
+void AFightingGameProjectCharacter::Crouch(float Value)
 {
 	
 }

@@ -91,8 +91,8 @@ void AFemaleNinja::SetupPlayerInputComponent(UInputComponent * PlayerInputCompon
 	PlayerInputComponent->BindAction("Attack6", IE_Pressed, this, &AFemaleNinja::StandingHK);
 	// PlayerInputComponent->BindAction("Attack6", IE_Released, this, &AFemaleNinja::StopAttack6);
 
-	PlayerInputComponent->BindAction("Crouch", IE_Pressed, this, &AFemaleNinja::Crouch);
-	PlayerInputComponent->BindAction("Crouch", IE_Released, this, &AFemaleNinja::StopCrouch);
+	PlayerInputComponent->BindAxis("Crouch", this, &AFemaleNinja::Crouch);
+	
 
 
 	PlayerInputComponent->BindTouch(IE_Pressed, this, &AFemaleNinja::TouchStarted);
@@ -143,17 +143,17 @@ void AFemaleNinja::StandingHK()
 	UE_LOG(LogTemp, Warning, TEXT("St. HK"));
 }
 
-void AFemaleNinja::Crouch()
-{
-	IsCrouching = true;
-	UE_LOG(LogTemp, Warning, TEXT("Crouch"));
-}
-
-void AFemaleNinja::StopCrouch()
+void AFemaleNinja::Crouch(float Value)
 {
 	IsCrouching = false;
-	UE_LOG(LogTemp, Warning, TEXT("Stop Crouch"));
+
+	if (Value > 0.5) {
+		IsCrouching = true;
+		UE_LOG(LogTemp, Warning, TEXT("Crouch"));
+	}
 }
+
+
 
 
 void AFemaleNinja::MoveRight(float Value)

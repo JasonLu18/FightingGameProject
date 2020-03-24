@@ -25,7 +25,7 @@ class AFightingGameProjectCharacter : public ACharacter
 	virtual void StartAttack4();
 	virtual void StartAttack5();
 	virtual void StartAttack6();
-	virtual void Crouch();
+	virtual void Crouch(float Value);
 	/** Called for side to side input */
 	void MoveRight(float Value);
 
