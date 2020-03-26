@@ -39,6 +39,12 @@ protected:
 	void StandingLK();
 	void StandingMK();
 	void StandingHK();
+	void CrouchingLP();
+	void CrouchingMP();
+	void CrouchingHP();
+	void CrouchingLK();
+	void CrouchingMK();
+	void CrouchingHK();
 	void Crouch(float Value);
 	void StopCrouch();
 	void MoveRight(float Value);

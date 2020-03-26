@@ -55,7 +55,6 @@ void AFightingGameProjectCharacter::SetupPlayerInputComponent(class UInputCompon
 {
 	// set up gameplay key bindings
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AFightingGameProjectCharacter::MoveRight);
 	PlayerInputComponent->BindAxis("MoveLeft", this, &AFightingGameProjectCharacter::MoveLeft);
 	PlayerInputComponent->BindAxis("Crouch", this, &AFightingGameProjectCharacter::Crouch);
@@ -79,8 +78,7 @@ void AFightingGameProjectCharacter::SetupPlayerInputComponent(class UInputCompon
 	// PlayerInputComponent->BindAction("Attack6", IE_Released, this, &AFightingGameProjectCharacter::StopAttack6);
 
 
-	PlayerInputComponent->BindTouch(IE_Pressed, this, &AFightingGameProjectCharacter::TouchStarted);
-	PlayerInputComponent->BindTouch(IE_Released, this, &AFightingGameProjectCharacter::TouchStopped);
+
 }
 
 void AFightingGameProjectCharacter::TakeDamage(float damageAmount)
@@ -142,12 +140,9 @@ void AFightingGameProjectCharacter::MoveLeft(float Value)
 
 void AFightingGameProjectCharacter::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
-	// jump on any touch
-	Jump();
 }
 
 void AFightingGameProjectCharacter::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
 {
-	StopJumping();
 }
 

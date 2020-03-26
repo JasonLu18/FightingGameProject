@@ -69,7 +69,6 @@ void AFemaleNinja::SetupPlayerInputComponent(UInputComponent * PlayerInputCompon
 	// set up gameplay key bindings
 
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
-	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AFemaleNinja::MoveRight);
 	PlayerInputComponent->BindAxis("MoveLeft", this, &AFemaleNinja::MoveLeft);
 
@@ -109,38 +108,98 @@ void AFemaleNinja::TakeDamage(float damageAmount)
 
 void AFemaleNinja::StandingLP()
 {
-	CurrentAttack = "StLP";
-	UE_LOG(LogTemp, Warning, TEXT("St. LP"));
+	if (IsCrouching == false) {
+		CurrentAttack = "StLP";
+		UE_LOG(LogTemp, Warning, TEXT("St. LP"));
+	}
 }
 
 void AFemaleNinja::StandingMP()
 {
-	CurrentAttack = "StMP";
-	UE_LOG(LogTemp, Warning, TEXT("St. MP"));
+	if (IsCrouching == false) {
+		CurrentAttack = "StMP";
+		UE_LOG(LogTemp, Warning, TEXT("St. MP"));
+	}
 }
 
 void AFemaleNinja::StandingHP()
 {
-	CurrentAttack = "StHP";
-	UE_LOG(LogTemp, Warning, TEXT("St. HP"));
+	if (IsCrouching == false) {
+		CurrentAttack = "StHP";
+		UE_LOG(LogTemp, Warning, TEXT("St. HP"));
+	}
 }
 
 void AFemaleNinja::StandingLK()
 {
-	CurrentAttack = "StLK";
-	UE_LOG(LogTemp, Warning, TEXT("St. LK"));
+	if (IsCrouching == false) {
+		CurrentAttack = "StLK";
+		UE_LOG(LogTemp, Warning, TEXT("St. LK"));
+	}
 }
 
 void AFemaleNinja::StandingMK()
 {
-	CurrentAttack = "StMK";
-	UE_LOG(LogTemp, Warning, TEXT("St. MK"));
+	if (IsCrouching == false) {
+		CurrentAttack = "StMK";
+		UE_LOG(LogTemp, Warning, TEXT("St. MK"));
+	}
 }
 
 void AFemaleNinja::StandingHK()
 {
-	CurrentAttack = "StHK";
-	UE_LOG(LogTemp, Warning, TEXT("St. HK"));
+	if (IsCrouching == false) {
+		CurrentAttack = "StHK";
+		UE_LOG(LogTemp, Warning, TEXT("St. HK"));
+	}
+}
+
+void AFemaleNinja::CrouchingLP()
+{
+	if (IsCrouching == true) {
+		CurrentAttack = "CrLP";
+		UE_LOG(LogTemp, Warning, TEXT("Cr. LP"));
+	}
+}
+
+void AFemaleNinja::CrouchingMP()
+{
+	if (IsCrouching == true) {
+		CurrentAttack = "CrMP";
+		UE_LOG(LogTemp, Warning, TEXT("Cr. MP"));
+	}
+}
+
+void AFemaleNinja::CrouchingHP()
+{
+	if (IsCrouching == true) {
+		CurrentAttack = "CrHP";
+		UE_LOG(LogTemp, Warning, TEXT("Cr. HP"));
+	}
+}
+
+void AFemaleNinja::CrouchingLK()
+{
+	if (IsCrouching == true) {
+		CurrentAttack = "CrLK";
+		UE_LOG(LogTemp, Warning, TEXT("Cr. LK"));
+	}
+}
+
+void AFemaleNinja::CrouchingMK()
+{
+	if (IsCrouching == true) {
+		CurrentAttack = "CrMK";
+		UE_LOG(LogTemp, Warning, TEXT("Cr. MK"));
+	}
+}
+
+void AFemaleNinja::CrouchingHK()
+{
+	if (IsCrouching == true) {
+		CurrentAttack = "CrHK";
+		UE_LOG(LogTemp, Warning, TEXT("Cr. HK"));
+	}
 }
 
 void AFemaleNinja::Crouch(float Value)
@@ -149,7 +208,7 @@ void AFemaleNinja::Crouch(float Value)
 
 	if (Value > 0.5) {
 		IsCrouching = true;
-		UE_LOG(LogTemp, Warning, TEXT("Crouch"));
+		// UE_LOG(LogTemp, Warning, TEXT("Crouch"));
 	}
 }
 
@@ -158,14 +217,19 @@ void AFemaleNinja::Crouch(float Value)
 
 void AFemaleNinja::MoveRight(float Value)
 {
-	// add movement in that direction
-	AddMovementInput(FVector(0.f, -1.f, 0.f), Value);
+	// add movement in that direction if not crouching
+	if (IsCrouching == false) {
+		AddMovementInput(FVector(0.f, -1.f, 0.f), Value);
+	}
 }
 
 void AFemaleNinja::MoveLeft(float Value)
 {
+	
 	// add movement in that direction
-	AddMovementInput(FVector(0.f, 1.f, 0.f), Value);
+	if (IsCrouching == false) {
+		AddMovementInput(FVector(0.f, 1.f, 0.f), Value);
+	}
 }
 
 
