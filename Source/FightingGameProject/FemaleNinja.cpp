@@ -53,16 +53,6 @@ AFemaleNinja::AFemaleNinja() {
 
 
 
-void AFemaleNinja::TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location)
-{
-	// jump on any touch
-	Jump();
-}
-
-void AFemaleNinja::TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location)
-{
-	StopJumping();
-}
 
 void AFemaleNinja::SetupPlayerInputComponent(UInputComponent * PlayerInputComponent)
 {
@@ -71,31 +61,33 @@ void AFemaleNinja::SetupPlayerInputComponent(UInputComponent * PlayerInputCompon
 	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAxis("MoveRight", this, &AFemaleNinja::MoveRight);
 	PlayerInputComponent->BindAxis("MoveLeft", this, &AFemaleNinja::MoveLeft);
+	PlayerInputComponent->BindAxis("Crouch", this, &AFemaleNinja::Crouch);
 
 	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &AFemaleNinja::StandingLP);
-	// PlayerInputComponent->BindAction("Attack1", IE_Released, this, &AFemaleNinja::StopAttack1);
-
 	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &AFemaleNinja::StandingMP);
-	// PlayerInputComponent->BindAction("Attack2", IE_Released, this, &AFemaleNinja::StopAttack2);
-
 	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &AFemaleNinja::StandingHP);
-	// PlayerInputComponent->BindAction("Attack3", IE_Released, this, &AFemaleNinja::StopAttack3);
-
 	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &AFemaleNinja::StandingLK);
-	// PlayerInputComponent->BindAction("Attack4", IE_Released, this, &AFemaleNinja::StopAttack4);
-
 	PlayerInputComponent->BindAction("Attack5", IE_Pressed, this, &AFemaleNinja::StandingMK);
-	// PlayerInputComponent->BindAction("Attack5", IE_Released, this, &AFemaleNinja::StopAttack5);
-
 	PlayerInputComponent->BindAction("Attack6", IE_Pressed, this, &AFemaleNinja::StandingHK);
-	// PlayerInputComponent->BindAction("Attack6", IE_Released, this, &AFemaleNinja::StopAttack6);
 
-	PlayerInputComponent->BindAxis("Crouch", this, &AFemaleNinja::Crouch);
 	
+	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &AFemaleNinja::CrouchingLP);
+	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &AFemaleNinja::CrouchingMP);
+	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &AFemaleNinja::CrouchingHP);
+	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &AFemaleNinja::CrouchingLK);
+	PlayerInputComponent->BindAction("Attack5", IE_Pressed, this, &AFemaleNinja::CrouchingMK);
+	PlayerInputComponent->BindAction("Attack6", IE_Pressed, this, &AFemaleNinja::CrouchingHK);
+
+	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &AFemaleNinja::JumpingLP);
+	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &AFemaleNinja::JumpingMP);
+	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &AFemaleNinja::JumpingHP);
+	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &AFemaleNinja::JumpingLK);
+	PlayerInputComponent->BindAction("Attack5", IE_Pressed, this, &AFemaleNinja::JumpingMK);
+	PlayerInputComponent->BindAction("Attack6", IE_Pressed, this, &AFemaleNinja::JumpingHK);
 
 
-	PlayerInputComponent->BindTouch(IE_Pressed, this, &AFemaleNinja::TouchStarted);
-	PlayerInputComponent->BindTouch(IE_Released, this, &AFemaleNinja::TouchStopped);
+
+
 }
 
 void AFemaleNinja::TakeDamage(float damageAmount)
@@ -108,7 +100,7 @@ void AFemaleNinja::TakeDamage(float damageAmount)
 
 void AFemaleNinja::StandingLP()
 {
-	if (IsCrouching == false) {
+	if (IsCrouching == false && GetCharacterMovement()->IsFalling() == false) {
 		CurrentAttack = "StLP";
 		UE_LOG(LogTemp, Warning, TEXT("St. LP"));
 	}
@@ -116,7 +108,7 @@ void AFemaleNinja::StandingLP()
 
 void AFemaleNinja::StandingMP()
 {
-	if (IsCrouching == false) {
+	if (IsCrouching == false && GetCharacterMovement()->IsFalling() == false) {
 		CurrentAttack = "StMP";
 		UE_LOG(LogTemp, Warning, TEXT("St. MP"));
 	}
@@ -124,7 +116,7 @@ void AFemaleNinja::StandingMP()
 
 void AFemaleNinja::StandingHP()
 {
-	if (IsCrouching == false) {
+	if (IsCrouching == false && GetCharacterMovement()->IsFalling() == false) {
 		CurrentAttack = "StHP";
 		UE_LOG(LogTemp, Warning, TEXT("St. HP"));
 	}
@@ -132,7 +124,7 @@ void AFemaleNinja::StandingHP()
 
 void AFemaleNinja::StandingLK()
 {
-	if (IsCrouching == false) {
+	if (IsCrouching == false && GetCharacterMovement()->IsFalling() == false) {
 		CurrentAttack = "StLK";
 		UE_LOG(LogTemp, Warning, TEXT("St. LK"));
 	}
@@ -140,7 +132,9 @@ void AFemaleNinja::StandingLK()
 
 void AFemaleNinja::StandingMK()
 {
-	if (IsCrouching == false) {
+	
+
+	if (IsCrouching == false && GetCharacterMovement()->IsFalling() == false) {
 		CurrentAttack = "StMK";
 		UE_LOG(LogTemp, Warning, TEXT("St. MK"));
 	}
@@ -148,7 +142,7 @@ void AFemaleNinja::StandingMK()
 
 void AFemaleNinja::StandingHK()
 {
-	if (IsCrouching == false) {
+	if (IsCrouching == false && GetCharacterMovement()->IsFalling() == false) {
 		CurrentAttack = "StHK";
 		UE_LOG(LogTemp, Warning, TEXT("St. HK"));
 	}
@@ -156,7 +150,7 @@ void AFemaleNinja::StandingHK()
 
 void AFemaleNinja::CrouchingLP()
 {
-	if (IsCrouching == true) {
+	if (IsCrouching == true && GetCharacterMovement()->IsFalling() == false) {
 		CurrentAttack = "CrLP";
 		UE_LOG(LogTemp, Warning, TEXT("Cr. LP"));
 	}
@@ -164,7 +158,7 @@ void AFemaleNinja::CrouchingLP()
 
 void AFemaleNinja::CrouchingMP()
 {
-	if (IsCrouching == true) {
+	if (IsCrouching == true && GetCharacterMovement()->IsFalling() == false) {
 		CurrentAttack = "CrMP";
 		UE_LOG(LogTemp, Warning, TEXT("Cr. MP"));
 	}
@@ -172,7 +166,7 @@ void AFemaleNinja::CrouchingMP()
 
 void AFemaleNinja::CrouchingHP()
 {
-	if (IsCrouching == true) {
+	if (IsCrouching == true && GetCharacterMovement()->IsFalling() == false) {
 		CurrentAttack = "CrHP";
 		UE_LOG(LogTemp, Warning, TEXT("Cr. HP"));
 	}
@@ -180,7 +174,7 @@ void AFemaleNinja::CrouchingHP()
 
 void AFemaleNinja::CrouchingLK()
 {
-	if (IsCrouching == true) {
+	if (IsCrouching == true && GetCharacterMovement()->IsFalling() == false) {
 		CurrentAttack = "CrLK";
 		UE_LOG(LogTemp, Warning, TEXT("Cr. LK"));
 	}
@@ -188,7 +182,7 @@ void AFemaleNinja::CrouchingLK()
 
 void AFemaleNinja::CrouchingMK()
 {
-	if (IsCrouching == true) {
+	if (IsCrouching == true && GetCharacterMovement()->IsFalling() == false) {
 		CurrentAttack = "CrMK";
 		UE_LOG(LogTemp, Warning, TEXT("Cr. MK"));
 	}
@@ -196,11 +190,55 @@ void AFemaleNinja::CrouchingMK()
 
 void AFemaleNinja::CrouchingHK()
 {
-	if (IsCrouching == true) {
+	if (IsCrouching == true && GetCharacterMovement()->IsFalling() == false) {
 		CurrentAttack = "CrHK";
 		UE_LOG(LogTemp, Warning, TEXT("Cr. HK"));
 	}
 }
+
+void AFemaleNinja::JumpingLP()
+{
+	if (GetCharacterMovement()->IsFalling() == true) {
+		UE_LOG(LogTemp, Warning, TEXT("Jump. LP"));
+	}
+}
+
+void AFemaleNinja::JumpingMP()
+{
+	if (GetCharacterMovement()->IsFalling() == true) {
+		UE_LOG(LogTemp, Warning, TEXT("Jump. MP"));
+	}
+}
+
+void AFemaleNinja::JumpingHP()
+{
+	if (GetCharacterMovement()->IsFalling() == true) {
+		UE_LOG(LogTemp, Warning, TEXT("Jump. HP"));
+	}
+}
+
+void AFemaleNinja::JumpingLK()
+{
+	if (GetCharacterMovement()->IsFalling() == true) {
+		UE_LOG(LogTemp, Warning, TEXT("Jump. LK"));
+	}
+}
+
+void AFemaleNinja::JumpingMK()
+{
+	if (GetCharacterMovement()->IsFalling() == true) {
+		UE_LOG(LogTemp, Warning, TEXT("Jump. MK"));
+	}
+}
+
+void AFemaleNinja::JumpingHK()
+{
+	if (GetCharacterMovement()->IsFalling() == true) {
+		UE_LOG(LogTemp, Warning, TEXT("Jump. HK"));
+	}
+}
+
+
 
 void AFemaleNinja::Crouch(float Value)
 {

@@ -45,22 +45,21 @@ protected:
 	void CrouchingLK();
 	void CrouchingMK();
 	void CrouchingHK();
+	void JumpingLP();
+	void JumpingMP();
+	void JumpingHP();
+	void JumpingLK();
+	void JumpingMK();
+	void JumpingHK();
 	void Crouch(float Value);
-	void StopCrouch();
 	void MoveRight(float Value);
 	void MoveLeft(float Value);
 
-	/** Handle touch inputs. */
-	void TouchStarted(const ETouchIndex::Type FingerIndex, const FVector Location);
-
-	/** Handle touch stop event. */
-	void TouchStopped(const ETouchIndex::Type FingerIndex, const FVector Location);
-
 	// APawn interface
-	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
+	void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 	// End of APawn interface
 
-	virtual void TakeDamage(float damageAmount);
+	void TakeDamage(float damageAmount);
 
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "ForwardMovement")

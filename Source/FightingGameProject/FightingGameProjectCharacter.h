@@ -19,17 +19,29 @@ class AFightingGameProjectCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
 
-	virtual void StartAttack1();
-	virtual void StartAttack2();
-	virtual void StartAttack3();
-	virtual void StartAttack4();
-	virtual void StartAttack5();
-	virtual void StartAttack6();
+	void StandingLP();
+	void StandingMP();
+	void StandingHP();
+	void StandingLK();
+	void StandingMK();
+	void StandingHK();
+	void CrouchingLP();
+	void CrouchingMP();
+	void CrouchingHP();
+	void CrouchingLK();
+	void CrouchingMK();
+	void CrouchingHK();
+	void JumpingLP();
+	void JumpingMP();
+	void JumpingHP();
+	void JumpingLK();
+	void JumpingMK();
+	void JumpingHK();
 	virtual void Crouch(float Value);
 	/** Called for side to side input */
-	void MoveRight(float Value);
+	virtual void MoveRight(float Value);
 
-	void MoveLeft(float Value);
+	virtual void MoveLeft(float Value);
 
 protected:
 
@@ -63,4 +75,7 @@ public:
 	FORCEINLINE class UCameraComponent* GetSideViewCameraComponent() const { return SideViewCameraComponent; }
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
+
+	
+
 };

@@ -59,22 +59,22 @@ void AFightingGameProjectCharacter::SetupPlayerInputComponent(class UInputCompon
 	PlayerInputComponent->BindAxis("MoveLeft", this, &AFightingGameProjectCharacter::MoveLeft);
 	PlayerInputComponent->BindAxis("Crouch", this, &AFightingGameProjectCharacter::Crouch);
 
-	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack1);
+	PlayerInputComponent->BindAction("Attack1", IE_Pressed, this, &AFightingGameProjectCharacter::StandingLP);
 	// PlayerInputComponent->BindAction("Attack1", IE_Released, this, &AFightingGameProjectCharacter::StopAttack1);
 
-	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack2);
+	PlayerInputComponent->BindAction("Attack2", IE_Pressed, this, &AFightingGameProjectCharacter::StandingMP);
 	// PlayerInputComponent->BindAction("Attack2", IE_Released, this, &AFightingGameProjectCharacter::StopAttack2);
 
-	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack3);
+	PlayerInputComponent->BindAction("Attack3", IE_Pressed, this, &AFightingGameProjectCharacter::StandingHP);
 	// PlayerInputComponent->BindAction("Attack3", IE_Released, this, &AFightingGameProjectCharacter::StopAttack3);
 
-	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack4);
+	PlayerInputComponent->BindAction("Attack4", IE_Pressed, this, &AFightingGameProjectCharacter::StandingLK);
 	// PlayerInputComponent->BindAction("Attack4", IE_Released, this, &AFightingGameProjectCharacter::StopAttack4);
 
-	PlayerInputComponent->BindAction("Attack5", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack5);
+	PlayerInputComponent->BindAction("Attack5", IE_Pressed, this, &AFightingGameProjectCharacter::StandingMK);
 	// PlayerInputComponent->BindAction("Attack5", IE_Released, this, &AFightingGameProjectCharacter::StopAttack5);
 
-	PlayerInputComponent->BindAction("Attack6", IE_Pressed, this, &AFightingGameProjectCharacter::StartAttack6);
+	PlayerInputComponent->BindAction("Attack6", IE_Pressed, this, &AFightingGameProjectCharacter::StandingHK);
 	// PlayerInputComponent->BindAction("Attack6", IE_Released, this, &AFightingGameProjectCharacter::StopAttack6);
 
 
@@ -89,34 +89,45 @@ void AFightingGameProjectCharacter::TakeDamage(float damageAmount)
 	}
 }
 
-void AFightingGameProjectCharacter::StartAttack1()
-{
 
+void AFightingGameProjectCharacter::CrouchingHP()
+{
 }
 
-void AFightingGameProjectCharacter::StartAttack2()
+void AFightingGameProjectCharacter::CrouchingLK()
 {
-
 }
 
-void AFightingGameProjectCharacter::StartAttack3()
+void AFightingGameProjectCharacter::CrouchingMK()
 {
-
 }
 
-void AFightingGameProjectCharacter::StartAttack4()
+void AFightingGameProjectCharacter::CrouchingHK()
 {
-	
 }
 
-void AFightingGameProjectCharacter::StartAttack5()
+void AFightingGameProjectCharacter::JumpingLP()
 {
-	
 }
 
-void AFightingGameProjectCharacter::StartAttack6()
+void AFightingGameProjectCharacter::JumpingMP()
 {
-	
+}
+
+void AFightingGameProjectCharacter::JumpingHP()
+{
+}
+
+void AFightingGameProjectCharacter::JumpingLK()
+{
+}
+
+void AFightingGameProjectCharacter::JumpingMK()
+{
+}
+
+void AFightingGameProjectCharacter::JumpingHK()
+{
 }
 
 void AFightingGameProjectCharacter::Crouch(float Value)
@@ -146,3 +157,34 @@ void AFightingGameProjectCharacter::TouchStopped(const ETouchIndex::Type FingerI
 {
 }
 
+void AFightingGameProjectCharacter::StandingLP()
+{
+}
+
+void AFightingGameProjectCharacter::StandingMP()
+{
+}
+
+void AFightingGameProjectCharacter::StandingHP()
+{
+}
+
+void AFightingGameProjectCharacter::StandingLK()
+{
+}
+
+void AFightingGameProjectCharacter::StandingMK()
+{
+}
+
+void AFightingGameProjectCharacter::StandingHK()
+{
+}
+
+void AFightingGameProjectCharacter::CrouchingLP()
+{
+}
+
+void AFightingGameProjectCharacter::CrouchingMP()
+{
+}
